@@ -4,49 +4,59 @@
   <meta charset="UTF-8">
   <title>Ficha de caracterización — Invierno 2025</title>
   <style>
-    /* Reset básico */
+    /* 1) Que html y body ocupen toda la altura */
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
       height: 100%;
     }
-
-    /* Contenedor responsivo con ratio 1902:1080 */
-    .responsive-container {
-      position: relative;
-      width: 100%;
-      max-width: 1902px;
-      /* Fallback: altura relativa al ancho (1080/1902 ≈ 56.78%) */
-      height: 0;
-      padding-bottom: 56.78%;
+    /* 2) Contenedor principal como flex column de 100vh */
+    .page {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
-    .responsive-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+    /* 3) Cabecera fija (ajusta la altura a lo que necesites) */
+    .header {
+      flex: 0 0 60px;         /* altura fija de 60px */
+      background: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      font-size: 1.2rem;
+    }
+    /* 4) Wrapper que ocupa el resto y centra el iframe */
+    .iframe-wrapper {
+      flex: 1 1 auto;         /* rellena el espacio restante */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5;
+    }
+    /* 5) El iframe se ajusta en altura al 100% del wrapper,
+          mantiene ratio y no desborda en anchura */
+    .iframe-wrapper iframe {
       height: 100%;
+      width: auto;
+      max-width: 100%;
       border: 0;
-    }
-
-    /* Si el navegador soporta aspect-ratio, úsalo en lugar del padding-hack */
-    @supports (aspect-ratio: 1/1) {
-      .responsive-container {
-        padding-bottom: 0;
-        height: auto;
-        aspect-ratio: 1902 / 1080;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="responsive-container">
-    <iframe
-      title="Ficha de caracterización (1.0 invierno 2025)"
-      src="https://app.powerbi.com/reportEmbed?reportId=a1e005c8-2d98-48d1-8058-27b7a23b5bc2&autoAuth=true&ctid=3e5a9a43-f508-4c1d-8fdb-fde704f3ee8a"
-      allowfullscreen>
-    </iframe>
+  <div class="page">
+    <header class="header">
+      <!-- Aquí puedes poner tu logo, menú, título, etc. -->
+      Ficha de caracterización — Invierno 2025
+    </header>
+    <div class="iframe-wrapper">
+      <iframe
+        title="Ficha de caracterización (1.0 invierno 2025)"
+        src="https://app.powerbi.com/reportEmbed?reportId=a1e005c8-2d98-48d1-8058-27b7a23b5bc2&autoAuth=true&ctid=3e5a9a43-f508-4c1d-8fdb-fde704f3ee8a"
+        allowfullscreen>
+      </iframe>
+    </div>
   </div>
 </body>
 </html>
